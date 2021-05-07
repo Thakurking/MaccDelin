@@ -1,4 +1,4 @@
-const getDatabase = require("../../../getDatabase");
+const getDatabase = require("../../../Helper/DB-Utils/getDatabase");
 
 // import { getDatabase } from "../../../getDatabase";
 

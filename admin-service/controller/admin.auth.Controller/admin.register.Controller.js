@@ -1,6 +1,4 @@
-const getDatabase = require("../../../getDatabase");
-
-// import { getDatabase } from "../../../getDatabase";
+const getDatabase = require("../../../Helper/DB-Utils/getDatabase");
 
 exports.AdminRegister = async (req, res) => {
   const { Name } = req.body;
