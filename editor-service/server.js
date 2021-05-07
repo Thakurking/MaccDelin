@@ -12,8 +12,8 @@ const figlet = require("figlet");
 const boxen = require("boxen");
 /***************************/
 
-const adminRouter = require("./routes/auth-route/admin.auth");
-app.use("/", adminRouter);
+const editorRouter = require("./routes/auth-routes/editor.auth");
+app.use("/", editorRouter);
 
 /**********MODULES SETUP**********/
 app.use(helmet());
@@ -54,10 +54,10 @@ app.use(cors(corsOption));
 /******************************/
 
 /**********SERVER PORT SETUP**********/
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 const server = app.listen(PORT, () => {
-  console.log(`Admin Server Crashed On PORT ${PORT}`);
+  console.log(`Editor Server Crashed On PORT ${PORT}`);
   figlet("MACCDELIN", {}, function (err, data) {
     if (err) {
       console.log("Something Went Wrong");
@@ -70,7 +70,7 @@ const server = app.listen(PORT, () => {
         margin: 2,
         borderStyle: "bold",
         borderColor: "yellowBright",
-        backgroundColor: "cyan",
+        backgroundColor: "greenBright",
       })
     );
   });
@@ -85,12 +85,15 @@ process.on("unhandledRejection", (err, promise) => {
 /**********MongoDB Connection**********/
 // const connectDB = async () => {
 //   try {
-//     const conn = await mongoose.connect("mongodb://localhost/MaccDelin-Admin", {
-//       useCreateIndex: true,
-//       useNewUrlParser: true,
-//       useFindAndModify: false,
-//       useUnifiedTopology: true,
-//     });
+//     const conn = await mongoose.connect(
+//       "mongodb://localhost/MaccDelin-Editor",
+//       {
+//         useCreateIndex: true,
+//         useNewUrlParser: true,
+//         useFindAndModify: false,
+//         useUnifiedTopology: true,
+//       }
+//     );
 //     console.log(`mongoDB Disconnected on: ${conn.connection.host}`);
 //   } catch (error) {
 //     console.error(error);
