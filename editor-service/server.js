@@ -3,7 +3,6 @@ const app = express();
 
 /**********MODULES**********/
 const cookieParser = require("cookie-parser");
-const mongoose = require("mongoose");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const httpError = require("http-errors");
@@ -12,9 +11,6 @@ const figlet = require("figlet");
 const boxen = require("boxen");
 /***************************/
 
-const editorRouter = require("./routes/auth-routes/editor.auth");
-app.use("/", editorRouter);
-
 /**********MODULES SETUP**********/
 app.use(helmet());
 app.use(express.json());
@@ -22,6 +18,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(morgan("dev"));
 /*********************************/
+
+const editorRouter = require("./routes/auth-routes/editor.auth");
+app.use("/editor", editorRouter);
 
 /**********HTTP-ERROR**********/
 app.use(async (req, res, next) => {

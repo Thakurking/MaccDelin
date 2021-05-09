@@ -1,11 +1,21 @@
-const getDatabase = require("../../../Helper/DB-Utils/getDatabase");
-
-// import { getDatabase } from "../../../getDatabase";
+const EditorModel = require("../../../Helper/DB-Utils/getDatabase");
+const AdminModel = require("../../../Helper/DB-Utils/getDatabase1");
 
 exports.EditorRegister = async (req, res) => {
+  res.send("hello");
+  console.log("hii editor");
   const { Text, Owner } = req.body;
-  const Editor = await getDatabase().EditorModel;
+  console.log(Text, Owner);
+  const editor = await EditorModel.create({
+    text: Text,
+    owner: Owner,
+  });
+  console.log(editor);
+};
 
-  const editor = Editor.create({ text: Text, owner: Owner });
-  return res.json(editor);
+exports.GetEditors = async (req, res) => {
+  const editor = await EditorModel.findOne({
+    text: "some random Text here",
+  }).populate({ path: "owner", model: AdminModel });
+  res.send(editor.owner[0].name);
 };
