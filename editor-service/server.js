@@ -80,24 +80,3 @@ process.on("unhandledRejection", (err, promise) => {
   server.close(() => process.exit(1));
 });
 /*************************************/
-
-/**********MongoDB Connection**********/
-// const connectDB = async () => {
-//   try {
-//     const conn = await mongoose.connect(
-//       "mongodb://localhost/MaccDelin-Editor",
-//       {
-//         useCreateIndex: true,
-//         useNewUrlParser: true,
-//         useFindAndModify: false,
-//         useUnifiedTopology: true,
-//       }
-//     );
-//     console.log(`mongoDB Disconnected on: ${conn.connection.host}`);
-//   } catch (error) {
-//     console.error(error);
-//     process.exit(1);
-//   }
-// };
-// connectDB();
-/************************************/

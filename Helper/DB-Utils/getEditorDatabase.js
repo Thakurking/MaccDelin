@@ -34,7 +34,6 @@
 // import { editorSchema } from "./editor-service/models/editor.model";
 // const editorSchema = require("../../editor-service/models/editor.model");
 const mongoose = require("mongoose");
-let db;
 // const getDatabase = () => {
 //   if (this.db) return Promise.resolve(db);
 //   return createDatabases();
