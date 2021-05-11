@@ -57,7 +57,7 @@ const editorDB = mongoose.createConnection(
 );
 const EditorModel = editorDB.model(
   "editor",
-  require("../../editor-service/models/editor.model")
+  require("../../../editor-service/models/editor.model")
 );
 
 module.exports = EditorModel;
