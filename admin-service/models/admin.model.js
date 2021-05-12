@@ -65,4 +65,8 @@ adminSchema.pre("save", async function (next) {
   next();
 });
 
+adminSchema.methods.passwordVerification = async function (Password) {
+  return await bcrypt.compare(Password, this.Password);
+};
+
 module.exports = adminSchema;
