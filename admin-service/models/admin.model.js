@@ -20,14 +20,20 @@ const adminSchema = new Schema(
       type: String,
       required: [true, "Password Required"],
       min: [8, "At Least 6 Characters Required, got {VALUE}"],
-      validate: {
-        validator: function (v) {
-          return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/.test(
-            v
-          );
-        },
-        message: (porps) => `${prpos.value}Not A valid Password`,
-      },
+      // validate: {
+      //   validator: function (v) {
+      //     return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/.test(
+      //       v
+      //     );
+      //   },
+      //   message: (porps) => `${prpos.value}Not A valid Password`,
+      // },
+      validate: [
+        validator.matches(
+          /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/
+        ),
+        "Password must contain a uppercse, digit, lowercase and a special character",
+      ],
       unique: true,
     },
     Editors: [
