@@ -10,7 +10,7 @@ const adminSchema = new Schema(
       required: [true, "Name Required"],
       min: 30,
     },
-    email: {
+    Email: {
       type: String,
       required: [true, "Email Required"],
       unique: true,
