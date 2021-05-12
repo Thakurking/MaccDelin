@@ -3,14 +3,28 @@ const app = express();
 
 /**********MODULES**********/
 const cookieParser = require("cookie-parser");
-const mongoose = require("mongoose");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const httpError = require("http-errors");
 const cors = require("cors");
 const figlet = require("figlet");
 const boxen = require("boxen");
+require("dotenv").config();
 /***************************/
+
+/**********CORS SETUP**********/
+const allowlist = ["http://localhost:3000"];
+const corsOptionsDelegate = function (req, callback) {
+  var corsOptions;
+  if (allowlist.indexOf(req.header("Origin")) !== -1) {
+    corsOptions = { origin: true };
+  } else {
+    corsOptions = { origin: false };
+  }
+  callback(null, corsOptions);
+};
+app.use(cors(corsOptionsDelegate));
+/******************************/
 
 /**********MODULES SETUP**********/
 app.use(helmet());
@@ -23,6 +37,8 @@ app.use(morgan("dev"));
 const adminRouter = require("./routes/auth-route/admin.auth");
 app.use("/admin", adminRouter);
 
+console.log(process.env.AdminCreateRoute);
+
 /**********HTTP-ERROR**********/
 app.use(async (req, res, next) => {
   next(httpError.NotFound("PAGE NOT FOUND"));
@@ -31,26 +47,6 @@ app.use((req, res, next) => {
   res.status(err.status || 500);
   res.send({ error: { status: err.status || 500, message: err.message } });
 });
-/******************************/
-
-/**********CORS SETUP**********/
-const whiteList = [
-  "http://localhost:3000",
-  "http://localhost:5000",
-  "http://localhost:5001",
-  "http://localhost:5002",
-  "http://localhost:5003",
-];
-const corsOption = {
-  origin: function (origin, callback) {
-    if (whiteList.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not Allowed From Other Origins"));
-    }
-  },
-};
-app.use(cors(corsOption));
 /******************************/
 
 /**********SERVER PORT SETUP**********/
