@@ -1,5 +1,7 @@
 const AdminModel = require("../../../Helper/DB.Helper/Admin.Service.DB/getAdminDatabase");
-const { errorHandler } = require("../../../Helper/Error/mongooseErrorHelper");
+const {
+  mongooseErrorHandler,
+} = require("../../../Helper/Error/mongooseErrorHelper");
 
 exports.AdminRegister = async (req, res) => {
   try {
@@ -15,7 +17,7 @@ exports.AdminRegister = async (req, res) => {
         return res.json({ message: "Admin Registered", status: true });
       }
     } catch (error) {
-      const errors = await errorHandler(error);
+      const errors = await mongooseErrorHandler(error);
       return res.json(errors);
     }
   } catch (error) {

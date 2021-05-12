@@ -1,4 +1,4 @@
-exports.errorHandler = async (err) => {
+exports.mongooseErrorHandler = async (err) => {
   console.log(err)
   let errors = {};
   if (err.code && err.code === 11000) {
