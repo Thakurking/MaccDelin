@@ -11,7 +11,7 @@ const adminDB = mongoose.createConnection(
 );
 const AdminModel = adminDB.model(
   "admin",
-  require("../../admin-service/models/admin.model")
+  require("../../../admin-service/models/admin.model")
 );
 
 module.exports = AdminModel;
