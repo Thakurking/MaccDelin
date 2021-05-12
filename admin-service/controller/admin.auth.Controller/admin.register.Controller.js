@@ -5,8 +5,8 @@ const {
 
 exports.AdminRegister = async (req, res) => {
   try {
-    const Email = req.body.Email;
-    const Password = req.body.Password;
+    const Email = req.query.Email;
+    const Password = req.query.Password;
     const admin = new AdminModel({
       Email: Email,
       Password: Password,
