@@ -9,9 +9,4 @@ const adminDB = mongoose.createConnection(
     useUnifiedTopology: true,
   }
 );
-const AdminModel = adminDB.model(
-  "admin",
-  require("../../../admin-service/models/admin.model")
-);
-
-module.exports = AdminModel;
+module.exports = adminDB;

@@ -28,7 +28,6 @@ exports.AdminLogin = async (req, res) => {
     return res
       .cookie("token", token, {
         expires: new Date(Date.now() + 8 * 3600000),
-        // signed: true,
       })
       .json({
         message: "Welcome Admin",

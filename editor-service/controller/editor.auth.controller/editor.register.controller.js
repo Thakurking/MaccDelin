@@ -1,9 +1,7 @@
-const EditorModel = require("../../../Helper/DB-Utils/getEditorDatabase");
-const AdminModel = require("../../../Helper/DB-Utils/getAdminDatabase1");
+const EditorModel = require("../../../Helper/DB.Helper/Editor.Service.DB/getEditorDatabase");
+const AdminModel = require("../../../Helper/DB.Helper/Admin.Service.DB/adminSchema");
 
 exports.EditorRegister = async (req, res) => {
-  res.send("hello");
-  console.log("hii editor");
   const { Text, Owner } = req.body;
   console.log(Text, Owner);
   const editor = await EditorModel.create({
@@ -11,15 +9,4 @@ exports.EditorRegister = async (req, res) => {
     owner: Owner,
   });
   console.log(editor);
-};
-
-exports.GetEditors = async (req, res) => {
-  const editor = await EditorModel.findOne({
-    text: "some random Text here",
-  }).populate({
-    path: "owner",
-    model: AdminModel,
-    // select: { name: "Ritesh Kumar Thakur" },
-  });
-  res.send(editor.owner);
 };
