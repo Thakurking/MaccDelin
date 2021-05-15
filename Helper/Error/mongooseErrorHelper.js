@@ -1,5 +1,4 @@
 exports.mongooseErrorHandler = async (err) => {
-  console.log(err)
   let errors = {};
   if (err.code && err.code === 11000) {
     errors.email = "Admin Already Exist";
