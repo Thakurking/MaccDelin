@@ -23,7 +23,7 @@ const corsOptionsDelegate = function (req, callback) {
   }
   callback(null, corsOptions);
 };
-app.use(cors(corsOptionsDelegate));
+app.use(cors(corsOptionsDelegate, { Credential: true }));
 /******************************/
 
 /**********MODULES SETUP**********/
@@ -36,8 +36,6 @@ app.use(morgan("dev"));
 
 const adminRouter = require("./routes/auth-route/admin.auth");
 app.use("/admin", adminRouter);
-
-console.log(process.env.AdminCreateRoute);
 
 /**********HTTP-ERROR**********/
 app.use(async (req, res, next) => {
