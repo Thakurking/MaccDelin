@@ -16,7 +16,7 @@ module.exports = async (req, res, next) => {
       }
       if (payload.isAdmin && payload.admin) {
         req.admin = payload.admin;
-        req.isAdmin = payload.isAdmin;
+        req.isAdmin = true;
         next();
       } else {
         return res.json({ message: "Admin Not Verified", status: false });

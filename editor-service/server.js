@@ -69,7 +69,7 @@ const server = app.listen(PORT, () => {
         margin: 2,
         borderStyle: "bold",
         borderColor: "yellowBright",
-        backgroundColor: "greenBright",
+        backgroundColor: "magenta",
       })
     );
   });

@@ -29,10 +29,10 @@ const adminSchema = new Schema(
       //   message: (porps) => `${prpos.value}Not A valid Password`,
       // },
       match: [
-        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/,
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
         "Password must contain a uppercse, digit, lowercase and a special character",
       ],
-      unique: true,
+      // unique: true,
     },
     Editors: [
       {
@@ -57,7 +57,7 @@ const adminSchema = new Schema(
 );
 
 adminSchema.pre("save", async function (next) {
-  if (this.isModified("password")) {
+  if (!this.isModified("Password")) {
     next();
   }
   const salt = await bcrypt.genSalt(10);

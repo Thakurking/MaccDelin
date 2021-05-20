@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const AdminModel = require("../../../Helper/DB.Helper/Admin.Service.DB/getAdminDatabase");
+const AdminModel = require("../../../Helper/DB.Helper/Admin.Service.DB/adminSchema");
 const {
   mongooseErrorHandler,
 } = require("../../../Helper/Error/mongooseErrorHelper");

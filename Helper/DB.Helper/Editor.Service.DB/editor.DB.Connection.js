@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
-const adminDB = mongoose.createConnection(
-  "mongodb://localhost/MaccDelin-Admin",
+const editorDB = mongoose.createConnection(
+  "mongodb://localhost/MaccDelin-Editor",
   {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -9,4 +9,5 @@ const adminDB = mongoose.createConnection(
     useUnifiedTopology: true,
   }
 );
-module.exports = adminDB;
+
+module.exports = editorDB;
