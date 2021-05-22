@@ -13,7 +13,7 @@ const editorSchema = new Schema(
     },
     Email: {
       type: String,
-      required: [true, "Please Your Editor Email"],
+      required: [true, "Please Enter Your Editor Email"],
       unique: true,
       validate: [validator.isEmail, "Please Enter A Valid Email"],
     },
@@ -23,7 +23,7 @@ const editorSchema = new Schema(
       min: [8, "Password Should Be 8 Characters Long"],
       match: [
         /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
-        "Password must contain a uppercse, digit, lowercase and a special character",
+        "Password must contain a uppercase, digit, lowercase and a special character",
       ],
     },
     /**
@@ -42,6 +42,7 @@ const editorSchema = new Schema(
       },
     ],
     /**
+     * Will send a gmail verification link
      * Status will be..
      * 1. Active - A
      * 2. Deactivated - F
@@ -50,6 +51,12 @@ const editorSchema = new Schema(
       type: String,
       default: "F",
     },
+    Admin: [
+      {
+        type: "ObjectId",
+        ref: "admin",
+      },
+    ],
   },
   { timestamps: true }
 );

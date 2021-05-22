@@ -12,6 +12,10 @@ const boxen = require("boxen");
 require("dotenv").config();
 /***************************/
 
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 /**********CORS SETUP**********/
 const allowlist = ["http://localhost:3000"];
 const corsOptionsDelegate = function (req, callback) {
@@ -23,19 +27,18 @@ const corsOptionsDelegate = function (req, callback) {
   }
   callback(null, corsOptions);
 };
-app.use(cors(corsOptionsDelegate, { Credential: true }));
+app.use(cors(corsOptionsDelegate, { credentials: true }));
 /******************************/
 
 /**********MODULES SETUP**********/
 app.use(helmet());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(morgan("dev"));
 /*********************************/
 
 const adminRouter = require("./routes/auth-route/admin.auth");
-app.use("/admin", adminRouter);
+const editorRouter = require("./routes/editor-route/editor.auth");
+app.use("/admin", adminRouter, editorRouter);
 
 /**********HTTP-ERROR**********/
 app.use(async (req, res, next) => {

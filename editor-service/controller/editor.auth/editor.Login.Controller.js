@@ -1,24 +1,28 @@
 const jwt = require("jsonwebtoken");
 
-const AdminModel = require("../../../Helper/DB.Helper/Admin.Service.DB/adminSchema");
+const EditorModel = require("../../../Helper/DB.Helper/Editor.Service.DB/editorSchema");
+
 const {
   mongooseErrorHandler,
 } = require("../../../Helper/Error/mongooseErrorHelper");
 
-exports.AdminLogin = async (req, res) => {
+exports.editorLogin = async (req, res) => {
   const { Email, Password } = req.body;
   try {
-    const isAdmin = await AdminModel.findOne({ Email }).select("+Password");
-    if (!isAdmin) {
+    const isEditor = await EditorModel.findOne({ Email }).select("+Password");
+    if (!isEditor) {
       return res.json({ message: "User Not Found", status: false });
     }
-    const isPasswordVerified = await isAdmin.passwordVerification(Password);
-    if (!isPasswordVerified) {
-      return res.json({ message: "Wrong Email Or Password", status: false });
+    const isPasswordVerified = await isEditor.passwordVerification(Password);
+    if (isPasswordVerified) {
+      return res.json({
+        message: "Wrong Email Or Password",
+        status: false,
+      });
     }
     let payload = {};
-    payload.isAdmin = true;
-    payload.admin = isAdmin._id;
+    payload.isEditor = true;
+    payload.editor = isEditor._id;
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: "8h",
     });
@@ -31,9 +35,9 @@ exports.AdminLogin = async (req, res) => {
         httpOnly: true,
       })
       .json({
-        message: "Welcome Admin",
+        message: "Welcome Editor",
         status: true,
-        admin_id: isAdmin._id,
+        editor_id: isEditor._id,
         token,
       });
   } catch (error) {

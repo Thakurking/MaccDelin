@@ -2,8 +2,8 @@ const token = require("jsonwebtoken");
 
 module.exports = async (req, res, next) => {
   try {
-    const { jwt } = req.cookies;
-    console.log(jwt);
+    const jwt = req.cookies.token;
+    // console.log(jwt);
     if (!jwt) {
       return res.json({ message: "Access failed", status: false });
     }

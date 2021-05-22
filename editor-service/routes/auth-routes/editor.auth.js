@@ -2,8 +2,8 @@ const express = require("express");
 
 const editorRouter = express.Router();
 
-const editorRegisterController = require("../../controller/editor.auth.controller/editor.register.controller");
+const editorLoginController = require("../../controller/editor.auth/editor.Login.Controller");
 
-editorRouter.post("/create-editor", editorRegisterController.EditorRegister);
+editorRouter.post("/editor-login", editorLoginController.editorLogin);
 
 module.exports = editorRouter;

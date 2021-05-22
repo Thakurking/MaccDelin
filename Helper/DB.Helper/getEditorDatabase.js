@@ -33,7 +33,7 @@
 // const adminSchema = require("../../admin-service/models/admin.model");
 // import { editorSchema } from "./editor-service/models/editor.model";
 // const editorSchema = require("../../editor-service/models/editor.model");
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 // const getDatabase = () => {
 //   if (this.db) return Promise.resolve(db);
 //   return createDatabases();
@@ -46,21 +46,21 @@ const mongoose = require("mongoose");
 //   "mongodb://localhost/MaccDelin-Admin",
 //   "mongodb://localhost/MaccDelin-Editor"
 // );
-const editorDB = mongoose.createConnection(
-  "mongodb://localhost/MaccDelin-Editor",
-  {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true,
-  }
-);
-const EditorModel = editorDB.model(
-  "editor",
-  require("../../editor-service/models/editor.model")
-);
+// const editorDB = mongoose.createConnection(
+//   "mongodb://localhost/MaccDelin-Editor",
+//   {
+//     useNewUrlParser: true,
+//     useCreateIndex: true,
+//     useFindAndModify: false,
+//     useUnifiedTopology: true,
+//   }
+// );
+// const EditorModel = editorDB.model(
+//   "editor",
+//   require("../../editor-service/models/editor.model")
+// );
 
-module.exports = EditorModel;
+// module.exports = EditorModel;
 
 // const adminDB = mongoose.createConnection(
 //   "mongodb://localhost/MaccDelin-Admin",
