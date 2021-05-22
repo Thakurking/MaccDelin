@@ -33,23 +33,41 @@ app.use((req, res, next) => {
 /******************************/
 
 /**********CORS SETUP**********/
-const whiteList = [
+// const whiteList = [
+//   "http://localhost:3000",
+//   "http://localhost:5000",
+//   "http://localhost:5001",
+//   "http://localhost:5002",
+//   "http://localhost:5003",
+// ];
+// const corsOption = {
+//   origin: function (origin, callback) {
+//     if (whiteList.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not Allowed From Other Origins"));
+//     }
+//   },
+// };
+// app.use(cors(corsOption));
+const allowlist = [
   "http://localhost:3000",
   "http://localhost:5000",
   "http://localhost:5001",
   "http://localhost:5002",
   "http://localhost:5003",
+  "http://localhost:5004",
 ];
-const corsOption = {
-  origin: function (origin, callback) {
-    if (whiteList.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not Allowed From Other Origins"));
-    }
-  },
+const corsOptionsDelegate = function (req, callback) {
+  var corsOptions;
+  if (allowlist.indexOf(req.header("Origin")) !== -1) {
+    corsOptions = { origin: true };
+  } else {
+    corsOptions = { origin: false };
+  }
+  callback(null, corsOptions);
 };
-app.use(cors(corsOption));
+app.use(cors(corsOptionsDelegate, { credentials: true }));
 /******************************/
 
 /**********SERVER PORT SETUP**********/
