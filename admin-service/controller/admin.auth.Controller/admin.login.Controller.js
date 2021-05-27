@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 const AdminModel = require("../../../Helper/DB.Helper/Admin.Service.DB/adminSchema");
 const {
@@ -30,6 +31,7 @@ exports.AdminLogin = async (req, res) => {
         expires: new Date(Date.now() + 8 * 3600000),
         httpOnly: true,
       })
+      .cookie("userID", isAdmin._id)
       .json({
         message: "Welcome Admin",
         status: true,

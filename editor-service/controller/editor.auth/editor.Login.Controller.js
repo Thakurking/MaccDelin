@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 const EditorModel = require("../../../Helper/DB.Helper/Editor.Service.DB/editorSchema");
 
@@ -13,7 +14,7 @@ exports.editorLogin = async (req, res) => {
     if (!isEditor) {
       return res.json({ message: "User Not Found", status: false });
     }
-    const isPasswordVerified = await isEditor.passwordVerification(Password);
+    const isPasswordVerified = await isEditor.verifyPassword(Password);
     if (isPasswordVerified) {
       return res.json({
         message: "Wrong Email Or Password",
@@ -34,6 +35,7 @@ exports.editorLogin = async (req, res) => {
         expires: new Date(Date.now() + 8 * 3600000),
         httpOnly: true,
       })
+      .cookie("userID", isEditor._id)
       .json({
         message: "Welcome Editor",
         status: true,

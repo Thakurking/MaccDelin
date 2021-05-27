@@ -9,7 +9,7 @@ module.exports = async (req, res, next) => {
     }
     token.verify(jwt, process.env.JWT_SECRET, async (err, payload) => {
       if (err) {
-        return register.json({
+        return res.json({
           message: "Token Authorization Failed",
           status: false,
         });

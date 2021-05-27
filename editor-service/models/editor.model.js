@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcrypt");
-const adminSchema = require("../../admin-service/models/admin.model");
 
 const Schema = mongoose.Schema;
 
@@ -59,7 +58,7 @@ editorSchema.pre("save", async function (next) {
   next();
 });
 
-adminSchema.methods.PasswordVerification = async function (Password) {
+editorSchema.methods.verifyPassword = async function (Password) {
   return await bcrypt.compare(Password, this.Password);
 };
 
