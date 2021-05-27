@@ -1,4 +1,5 @@
 const EditorModel = require("../../../Helper/DB.Helper/Editor.Service.DB/editorSchema");
+const EditorPermissionModel = require("../../../Helper/DB.Helper/Editor.Service.DB/editorPermissionSchema")
 const {
   mongooseErrorHandler,
 } = require("../../../Helper/Error/mongooseErrorHelper");
@@ -15,7 +16,14 @@ exports.EditorRegister = async (req, res) => {
         Password: Password,
       });
       const saveEditor = await editor.save();
-      if (saveEditor) {
+      const permission = new EditorPermissionModel({
+        editorID: editor._id,
+        NONE: true,
+      });
+      const savePermission = await permission.save();
+      saveEditor.Permission = permission._id;
+      saveEditor.save();
+      if (saveEditor && savePermission) {
         return res.json({ message: "Editor Registered", status: true });
       }
     } catch (error) {

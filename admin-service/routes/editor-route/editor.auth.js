@@ -4,12 +4,15 @@ const editorRouter = express.Router();
 
 const isUser = require("../../../auth");
 
-const editorRegisterCotroller = require("../../controller/admin.editor.Controller/editor.Register.Controller");
+const editorRegisterController = require("../../controller/admin.editor.Controller/editor.Register.Controller");
+const editorRoleController = require("../../controller/admin.editor.Controller/editor.Role.Controller");
 
 editorRouter.post(
   "/register-editor",
   // isUser,
-  editorRegisterCotroller.EditorRegister
+  editorRegisterController.EditorRegister
 );
+
+editorRouter.put("/assign-roles", editorRoleController.AssignRoles);
 
 module.exports = editorRouter;

@@ -27,21 +27,6 @@ const editorSchema = new Schema(
       ],
     },
     /**
-     * Roles Will Be..
-     * 1. Access To Blogs Queue - BLOG-ACCESS
-     * 2. Edit Blogs - EDIT-BLOG
-     * 3. Delete Blogs - DELETE-BLOG
-     * 4. Change Website Theme - CHANGE-BLOG
-     * 5. Delete Comments - DELETE-COMMENT
-     * 6. Not Given Any Access - NONE
-     */
-    Role: [
-      {
-        type: String,
-        default: "NONE",
-      },
-    ],
-    /**
      * Will send a gmail verification link
      * Status will be..
      * 1. Active - A
@@ -57,6 +42,10 @@ const editorSchema = new Schema(
         ref: "admin",
       },
     ],
+    Permission: {
+      type: Schema.Types.ObjectId,
+      ref: "editorPermission",
+    },
   },
   { timestamps: true }
 );
