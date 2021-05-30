@@ -1,5 +1,5 @@
 const EditorModel = require("../../../Helper/DB.Helper/Editor.Service.DB/editorSchema");
-const EditorPermissionModel = require("../../../Helper/DB.Helper/Editor.Service.DB/editorPermissionSchema")
+const EditorPermissionModel = require("../../../Helper/DB.Helper/Permission.DB/userPermissionSchema");
 const {
   mongooseErrorHandler,
 } = require("../../../Helper/Error/mongooseErrorHelper");

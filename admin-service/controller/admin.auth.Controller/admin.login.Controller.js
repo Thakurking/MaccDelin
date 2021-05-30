@@ -31,7 +31,7 @@ exports.AdminLogin = async (req, res) => {
         expires: new Date(Date.now() + 8 * 3600000),
         httpOnly: true,
       })
-      .cookie("userID", isAdmin._id)
+      .cookie("user_id", isAdmin._id)
       .json({
         message: "Welcome Admin",
         status: true,

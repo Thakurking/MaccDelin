@@ -1,4 +1,4 @@
-const EditorModel = require("../../../Helper/DB.Helper/Editor.Service.DB/editorSchema");
+const UserPermissionModel = require("../../../Helper/DB.Helper/Permission.DB/userPermissionSchema");
 
 const {
   mongooseErrorHandler,
@@ -6,10 +6,13 @@ const {
 
 exports.AssignRoles = async (req, res) => {
   try {
-    const role = req.body.role;
-    const value = req.body.value;
-    const editorID = req.body._id;
-    
+    const userID = req.body._id;
+    const roles = req.body.role;
+    const assignRoles = await UserPermissionModel.updateOne(
+      { userID: userID },
+      { $set: roles }
+    );
+    console.log(assignRoles);
   } catch (error) {
     console.log(error);
   }

@@ -35,7 +35,7 @@ exports.editorLogin = async (req, res) => {
         expires: new Date(Date.now() + 8 * 3600000),
         httpOnly: true,
       })
-      .cookie("userID", isEditor._id)
+      .cookie("user_id", isEditor._id)
       .json({
         message: "Welcome Editor",
         status: true,
