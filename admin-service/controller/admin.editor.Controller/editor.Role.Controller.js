@@ -1,16 +1,21 @@
 const UserPermissionModel = require("../../../Helper/DB.Helper/Permission.DB/userPermissionSchema");
 
-const {
-  mongooseErrorHandler,
-} = require("../../../Helper/Error/mongooseErrorHelper");
 
 exports.AssignRoles = async (req, res) => {
   try {
-    const userID = req.body._id;
-    const roles = req.body.role;
+    const userID = req.body.userID;
+    /**
+     * roles =>
+     * Permission: {
+     *  ACCESS_BLOG: true
+     * }
+     */
+    console.log(userID);
+    const Permission = req.body.Permissions;
+    console.log(Permission);
     const assignRoles = await UserPermissionModel.updateOne(
       { userID: userID },
-      { $set: roles }
+      { $set: Permission }
     );
     console.log(assignRoles);
   } catch (error) {

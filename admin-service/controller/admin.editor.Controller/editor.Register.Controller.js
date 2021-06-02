@@ -17,7 +17,7 @@ exports.EditorRegister = async (req, res) => {
       });
       const saveEditor = await editor.save();
       const permission = new EditorPermissionModel({
-        editorID: editor._id,
+        userID: editor._id,
         NONE: true,
       });
       const savePermission = await permission.save();

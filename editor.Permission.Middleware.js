@@ -11,7 +11,7 @@ module.exports = async (req, res, next) => {
       userID: userID,
     });
     if (isUser) {
-      req.Permission = isEditor.Permission;
+      req.Permission = isUser.Permission;
       next();
     }
   } catch (error) {
