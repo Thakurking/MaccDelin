@@ -17,7 +17,7 @@ const userPermission = new Schema({
     required: true,
   },
   Permission: {
-    ACCESS_BLOG: {
+    ACCESS_BLOG_QUEUE: {
       type: String,
       default: false,
     },
@@ -34,6 +34,14 @@ const userPermission = new Schema({
       default: false,
     },
     DELETE_COMMENT: {
+      type: String,
+      default: false,
+    },
+    CREATE_BLOG: {
+      type: String,
+      default: false,
+    },
+    CREATE_COMMENT: {
       type: String,
       default: false,
     },
