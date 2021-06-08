@@ -41,6 +41,12 @@ const editorSchema = new Schema(
         ref: "admin",
       },
     ],
+    Blogs: [
+      {
+        type: "ObjectId",
+        ref: "blog",
+      },
+    ],
     Permission: {
       type: Schema.Types.ObjectId,
       ref: "editorPermission",
