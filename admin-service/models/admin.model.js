@@ -52,6 +52,10 @@ const adminSchema = new Schema(
         ref: "author",
       },
     ],
+    Role: {
+      type: String,
+      default: "admin",
+    },
   },
   { timestamps: true }
 );
