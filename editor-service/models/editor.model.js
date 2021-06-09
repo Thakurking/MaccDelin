@@ -51,6 +51,10 @@ const editorSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "editorPermission",
     },
+    Role: {
+      type: String,
+      default: "editor",
+    },
   },
   { timestamps: true }
 );
