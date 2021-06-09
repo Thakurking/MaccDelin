@@ -62,3 +62,5 @@ const blogSchema = new Schema(
   },
   { timestamps: true }
 );
+
+module.exports = blogSchema;
