@@ -17,11 +17,13 @@ module.exports = async (req, res, next) => {
       if (payload.isAdmin && payload.admin) {
         req.admin = payload.admin;
         req.isAdmin = true;
+        req.role = "admin";
         next();
       }
       if (payload.isEditor && payload.editor) {
         req.editor = payload.editor;
         req.isEditor = true;
+        req.role = "editor";
         next();
       } else {
         return res.json({ message: "User Not Verified", status: false });
