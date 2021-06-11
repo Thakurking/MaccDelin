@@ -3,7 +3,7 @@ const token = require("jsonwebtoken");
 module.exports = async (req, res, next) => {
   try {
     const jwt = req.cookies.token;
-    // console.log(jwt);
+    console.log(jwt);
     if (!jwt) {
       return res.json({ message: "Access failed", status: false });
     }
@@ -24,6 +24,12 @@ module.exports = async (req, res, next) => {
         req.editor = payload.editor;
         req.isEditor = true;
         req.role = "editor";
+        next();
+      }
+      if (payload.isAuthor && payload.author) {
+        req.author = payload.author;
+        req.isAuthor = true;
+        req.role = "author";
         next();
       } else {
         return res.json({ message: "User Not Verified", status: false });

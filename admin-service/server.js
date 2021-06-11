@@ -43,8 +43,8 @@ app.use(cookieParser());
 app.use(morgan("dev"));
 /*********************************/
 
-const adminRouter = require("./routes/auth-route/admin.auth");
-const editorRouter = require("./routes/editor-route/editor.auth");
+const adminRouter = require("./routes/auth-route/admin.auth.routes");
+const editorRouter = require("./routes/editor-route/editor.auth.routes");
 app.use("/admin", adminRouter, editorRouter);
 
 /**********HTTP-ERROR**********/

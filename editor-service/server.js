@@ -19,7 +19,7 @@ app.use(cookieParser());
 app.use(morgan("dev"));
 /*********************************/
 
-const editorRouter = require("./routes/auth-routes/editor.auth");
+const editorRouter = require("./routes/auth-routes/editor.auth.routes");
 app.use("/editor", editorRouter);
 
 /**********HTTP-ERROR**********/
