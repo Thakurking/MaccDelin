@@ -43,6 +43,9 @@ app.use(cookieParser());
 app.use(morgan("dev"));
 /*********************************/
 
+const blogRouter = require("./routes/blog.routes");
+app.use("/blog", blogRouter);
+
 /**********HTTP-ERROR**********/
 app.use(async (req, res, next) => {
   next(httpError.NotFound("PAGE NOT FOUND"));
