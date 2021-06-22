@@ -8,7 +8,11 @@ const {
 } = require("../../../Helper/Error/mongooseErrorHelper");
 
 exports.editorLogin = async (req, res) => {
+  console.log("hii")
   const { Email, Password } = req.body;
+  if(!Email || !Password){
+    return res.json({ message: "Please Provide Email And Password" });
+  }
   try {
     const isEditor = await EditorModel.findOne({ Email }).select("+Password");
     if (!isEditor) {
